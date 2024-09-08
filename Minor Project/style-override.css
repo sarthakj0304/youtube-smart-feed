@@ -1,0 +1,237 @@
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/Roboto-Regular.ttf");
+  }
+  
+  /* Hide the whole page by default to prevent blinking when extension is being loaded. */
+  body {
+    display: none;
+  }
+  
+  .fy-logo-menu {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 999999999;
+    min-width: 144px;
+    transform: translateY(100%);
+    padding-top: 8px;
+  
+    background-color: transparent;
+  }
+  
+  .fy-logo-menu__body {
+    padding: 16px;
+  
+    border-radius: 8px;
+  
+    background-color: white;
+  }
+  
+  .fy-logo-menu__links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .fy-home-page__logo:hover .fy-logo-menu {
+    display: block;
+  }
+  
+  #logo:hover .fy-logo-menu {
+    display: block;
+  }
+  
+  .fy-logo-menu:hover {
+    display: block;
+  }
+  
+  .fy-logo-menu__link {
+    padding: 12px;
+  
+    border-radius: 4px;
+  
+    font-size: 14px;
+    color: #0F0F0F;
+  }
+  
+  .fy-logo-menu__link:hover {
+    background-color: #F1F6F4;
+  }
+  
+  .fy-home-page {
+    height: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    position: relative;
+  
+    background-color: #F1F6F4;
+  }
+  
+  .fy-home-page__logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100px;
+    height: 22px;
+  
+    background-image: url("chrome-extension://__MSG_@@extension_id__/images/youtube_logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .fy-home-page__form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .fy-search-form {
+    display: flex;
+  }
+  
+  .fy-search-form__text-input {
+    min-width: 300px;
+    padding: 8px 12px;
+  
+    border: 1px solid #ded7d7;
+    border-right: 0;
+    border-radius: 2px 0 0 2px;
+    outline: none;
+  
+    font-family: Roboto;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  
+  .fy-search-form__submit {
+    display: block;
+    width: 70px;
+    height: 42px;
+  
+    border: 1px solid #ded7d7;
+    border-radius: 0 2px 2px 0;
+    outline: none;
+  
+    background-image: url('chrome-extension://__MSG_@@extension_id__/images/search_icon.svg');
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+  
+    cursor: pointer;
+  }
+  
+  /* Do not delete the ".ytd-popup-container" class to avoid losing
+  + the dropdown menu on the top rigth side of the video block. */
+  
+  body.fy-results-page #guide-icon.ytd-masthead,
+  body.fy-watch-page .button.yt-icon-button,
+  body.fy-results-page #guide-content,
+  body.fy-results-page #buttons.ytd-masthead,
+  body.fy-results-page #guide-button,
+  body.fy-results-page #sub-menu,
+  body.fy-results-page ytd-horizontal-card-list-renderer,
+  body.fy-results-page ytd-channel-renderer,
+  body.fy-results-page ytd-mini-guide-renderer,
+  body.fy-results-page yt-showing-results-for-renderer,
+  body.fy-results-page ytd-continuation-item-renderer, /* Remove infinite scroll */
+  body.fy-results-page #secondary.style-scope.ytd-two-column-search-results-renderer,
+  body.fy-results-page ytd-reel-shelf-renderer /* Hide "Shorts" sections */,
+  body.fy-results-page #header .ytd-search /* Hide header bar with tags All, Shorts, etc */,
+  body.fy-results-page .ytd-ad-slot-renderer /* Hide "Sponsored" search results */ {
+    display: none !important;
+  }
+  
+  .fy-invisible {
+    display: none !important;
+  }
+  
+  body.fy-results-page #dismissable.ytd-video-renderer,
+  body.fy-results-page .ytd-item-section-renderer {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  body.fy-results-page.fy-results-page--infinite-scroll-enabled ytd-continuation-item-renderer {
+    display: block !important;
+  }
+  
+  body.fy-watch-page #guide-icon.ytd-masthead,
+  body.fy-watch-page .button.yt-icon-button,
+  body.fy-watch-page #guide-content,
+  body.fy-watch-page #guide-button,
+  body.fy-watch-page #buttons.ytd-masthead,
+  body.fy-watch-page #sub-menu,
+  body.fy-watch-page #related,
+  body.fy-watch-page #subscribe-button,
+  body.fy-watch-page yt-icon-button.dropdown-trigger:first-of-type,
+  body.fy-watch-page ytd-sentiment-bar-renderer,
+  body.fy-watch-page .html5-endscreen, /* Remove suggested video endscreen */
+  body.fy-watch-page .ytp-ce-element, /* Remove end-video subscribe and author recommendations */
+  body.fy-watch-page .ytp-ce-element.ytp-ce-channel.ytp-ce-channel-this, /* Remove YT premium/TV nudges */
+  body.fy-watch-page .ytp-pause-overlay, /* hide suggest video popup when embedded videos paused */
+  body.fy-watch-page .ytp-next-button, /* Remove play next button */
+  body.fy-watch-page ytd-live-chat-frame, /* Hide live chat and chat replay */
+  body.fy-watch-page .ytd-browse .app-header,
+  body.fy-watch-page #comments,
+  body.fy-watch-page #description {
+    display: none !important;
+  }
+  
+  body.fy-watch-page.fy-watch-page--comments-visible #comments {
+    display: block !important;
+  }
+  
+  body.fy-watch-page.fy-watch-page--description-visible #description {
+    display: block !important;
+  }
+  
+  body.fy-watch-page ytd-video-secondary-info-renderer {
+    border: 0;
+  }
+  
+  body.fy-channel-page #guide-icon.ytd-masthead,
+  body.fy-channel-page .button.yt-icon-button,
+  body.fy-channel-page #guide-content,
+  body.fy-channel-page #buttons.ytd-masthead,
+  body.fy-channel-page #guide-button.ytd-masthead,
+  body.fy-channel-page .ytd-mini-guide-entry-renderer,
+  body.fy-channel-page #sub-menu,
+  
+  /* Hides "Subscribe" to channel button from videos page */
+  ytd-browse[page-subtype='channels'] .app-header {
+    display: none;
+  }
+  
+  body.fy-history-page #guide-button.ytd-masthead,
+  body.fy-history-page ytd-mini-guide-renderer,
+  body.fy-history-page #voice-search-button,
+  body.fy-history-page #end #buttons {
+    display: none !important;
+  }
+  
+  body.fy-history-page #page-header {
+    padding-left: 0;
+  }
+  
+  body.fy-playlist-page #guide-button.ytd-masthead,
+  body.fy-playlist-page ytd-mini-guide-renderer,
+  body.fy-playlist-page #voice-search-button,
+  body.fy-playlist-page #end #buttons {
+    display: none !important;
+  }
+  
+  /* Hides notification bell-icon from header menu */
+  ytd-notification-topbar-button-renderer.notification-button-style-type-default {
+    display: none !important;
+  }
+  
+  
